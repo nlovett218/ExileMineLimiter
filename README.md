@@ -1,8 +1,12 @@
 # ExileMineLimiter
 This is a system built specifically for Exile to limit the amount of trigger mines that can be placed by players. Players can also place persistent __*DEFENSIVE*__ territory mines. There is also a working disarm system to counter the mines. Even more exciting, this makes the Mine Detector work with Exile!
 
+
+<p align="center">
 Here is the system in action.
+
 [![Exile Mine Limiter](https://img.youtube.com/vi/tdxi-jPnRjI/0.jpg)](https://www.youtube.com/watch?v=tdxi-jPnRjI "ARMA 3 | Sneak Peek - Mine Disarming")
+</p>
 
 # Installation
 1. Download ExileMineLimiter.zip and extract.
@@ -33,7 +37,7 @@ List of files that will need to be merged:
 8. CfgExileDelayedActions.cpp
 9. custom\MineLimiter_Client\overrides\ExileClient_action_execute.sqf
 
-#### init.sqf
+### init.sqf
 
 This initiates the server task to check all mines on the map, to compare them against mines that no longer exist. Then sets player mine weights, and calls necessary server functions.
 
