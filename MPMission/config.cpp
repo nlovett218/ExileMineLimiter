@@ -1,4 +1,3 @@
-
 class CfgMine
 {
 	//Based on max number or weight (not developed enough only weight system works)
