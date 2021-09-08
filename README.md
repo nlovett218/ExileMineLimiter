@@ -17,7 +17,7 @@ When a player sets a mine, the system checks if the mine is an allowed type, the
 be allowed to place mines. If the player is inside their own friendly territory, the mine is persistent and will be respawned on restart if not triggered. Players will be given
 ownership of the mine if they die or reconnect so it fixes the issue where you lose ownership of the mine after you die or log out. 
 
-Mine Detectors also work with this system! Simply add them to your traders and loot tables, and it will instantly start picking up the mines. This is because the mines are spawned by the server
+Mine Detectors also work with this system! Simply add them to your traders and loot tables, and it will instantly start picking up the mines on the radar. This is because the mines are spawned by the server
 instead of by the client.
 
 
@@ -133,3 +133,5 @@ ExileServer_object_player_createBambi = "overrides\ExileServer_object_player_cre
 ExileServer_object_player_database_load = "overrides\ExileServer_object_player_database_load.sqf";
 
 ```
+
+### Feel free to contact me on discord if you have any issues: YouViolateMe#2297
