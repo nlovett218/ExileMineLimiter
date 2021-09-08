@@ -1,15 +1,24 @@
 # ExileMineLimiter
-This is a system built specifically for Exile to limit the amount of trigger mines that can be placed by players. Players can also place persistent __*DEFENSIVE*__ territory mines. There is also a working disarm system to counter the mines. Even more exciting, this makes the Mine Detector work with Exile!
+ExileMineLimiter is a system built specifically for Exile to limit the amount of mines that can be placed by players. Players can also place persistent __*DEFENSIVE*__ territory mines. There is also a working disarm system to counter the mines. Even more exciting, this makes the Mine Detector work with Exile!
 
 
-<p align="center">
-Here is the system in action.
+<p align="left">
+Here is a video of the system in action.
 
 [![Exile Mine Limiter](https://img.youtube.com/vi/tdxi-jPnRjI/0.jpg)](https://www.youtube.com/watch?v=tdxi-jPnRjI "ARMA 3 | Sneak Peek - Mine Disarming")
 </p>
 
-# Installation
-1. Download ExileMineLimiter.zip and extract.
+# How It Works
+
+ExileMineLimiter is coded by a "weight" system. Each mine type weighs a certain amount, for example an explosive charge might weigh 10, while a satchel would weight 25. This
+allows for flexibility for certain amounts and types of mines instead of just having a max amount. This system works best with RHS. 
+
+When a player sets a mine, the system checks if the mine is an allowed type, then sets the player's total weight. If the player reaches the total max weight, he or she will no longer
+be allowed to place mines. If the player is inside their own friendly territory, the mine is persistent and will be respawned on restart if not triggered. Players will be given
+ownership of the mine if they die or reconnect so it fixes the issue where you lose ownership of the mine after you die or log out. 
+
+Mine Detectors also work with this system! Simply add them to your traders and loot tables, and it will instantly start picking up the mines. This is because the mines are spawned by the server
+instead of by the client.
 
 
 # Server
@@ -85,11 +94,6 @@ Contains the CfgMine class.
 Here are the editable settings:
 
 ````
-	//Based on max number or weight (not developed enough only weight system works)
-	systemType = "WEIGHT";
-
-	//STILL WIP, NOT FUNCTIONAL
-	maxPerPlayer = 3;
 
 	//Max Weight per player
 	maxWeight = 150;
