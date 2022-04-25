@@ -14,8 +14,6 @@ try {
 		throw "Hacker level 100000000";
 	};
 
-	diag_log format ["mine type: %1", typeOf _object];
-
 	deleteVehicle _object;
 
 	private _ExileDatabaseID = _object getVariable["ExileDatabaseID", -1];

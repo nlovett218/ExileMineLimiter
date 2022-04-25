@@ -38,12 +38,15 @@ private _activationDistance = getNumber(missionConfigFile >> "CfgMine" >> "disar
                         private _player = _x;
                         private _addActionAdded = _player getVariable["KFB_mineAddAction", false];
 
-                        if (_mineObj distance _player <= 15 && (!(_addActionAdded)) && (!(getModelInfo _mineObj select 0 isEqualTo "empty.p3d"))) then 
+                        if (alive _player) then 
                         {
-                            _player setVariable["KFB_mineAddAction", true, true];
+                            if (_mineObj distance _player <= 15 && (!(_addActionAdded)) && (!(getModelInfo _mineObj select 0 isEqualTo "empty.p3d"))) then 
+                            {
+                                _player setVariable["KFB_mineAddAction", true, true];
 
-                            [_player, ["<t color='#B30000'>Disarm Nearby Mine</t>", "['DisarmMine', call fnc_getClosestBomb] call ExileClient_action_execute;", nil, 0, true, true, "", "call ExileClient_MineLimiter_disarmMine_canDisarmMine", _activationDistance, false]] remoteExec ["addAction",_player];
-                        }
+                                [_player, ["<t color='#B30000'>Disarm Nearby Mine</t>", "['DisarmMine', call fnc_getClosestBomb] call ExileClient_action_execute;", nil, 0, true, true, "", "call ExileClient_MineLimiter_disarmMine_canDisarmMine", _activationDistance, false]] remoteExec ["addAction",_player];
+                            };
+                        };
                     }
                     foreach allPlayers;
                 };

@@ -9,6 +9,16 @@ private _isPersistent = _mine select 8; //getVariable["isPersistent", false];
 private _databaseIDFromEntity = _mine select 7; //getVariable["ExileDatabaseID", ""];
 private _player = [_owner] call fnc_getPlayerFromUID;
 
+if (isNil "_player") exitWith {
+	diag_log "Attempt to delete mine - _player was null";
+
+	if (_isPersistent) then {
+		if !(isNil "_databaseIDFromEntity") then {
+			format ["deletePersistentMine:%1", _databaseIDFromEntity] call ExileServer_system_database_query_fireAndForget;
+		};
+	};
+};
+
 private _ownedMines = _player getVariable["KFB_ownedMines", []];
 
 //This prints out a lot of array data

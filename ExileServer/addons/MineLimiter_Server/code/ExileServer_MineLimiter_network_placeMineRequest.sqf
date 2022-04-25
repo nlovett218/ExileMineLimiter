@@ -7,24 +7,6 @@ _class = _paramaters select 1;
 _objectNetId = _paramaters select 2;
 //_direction = _paramaters select 3;
 
-_object = objectFromNetId _objectNetId;
-_mineClass = _object call CBA_fnc_getObjectConfig;
-_playerMineWeight = _player getVariable["KFB_totalMineWeight", 0];
-_classInfo = (missionConfigFile >> "CfgMine" >> "types");
-_maxWeight = getNumber (missionConfigFile >> "CfgMine" >> "maxWeight");
-_defaultWeight = getNumber (missionConfigFile >> "CfgMine" >> "defaultWeight");
-_classTypes = getArray (missionConfigFile >> "CfgMine" >> "classTypes");
-_territoryOnlyEnabled = (missionConfigFile >> "CfgMine" >> "territoryOnly") call BIS_fnc_getCfgDataBool;
-
-private _vectorDirAndUp = [vectorDir _object, vectorUp _object];
-_position = getPos _object;
-_vectorDirection = direction _object;
-_vectorUp = vectorUp _object;
-
-//Remove old mine from world that the player placed down
-_player removeOwnedMine _object;
-deleteVehicle _object;
-
 _success = false;
 
 try 
@@ -48,6 +30,20 @@ try
 	{
 		throw "Placing mines outside friendly territories is not allowed!";
 	};
+
+	_object = objectFromNetId _objectNetId;
+	_mineClass = _object call CBA_fnc_getObjectConfig;
+	_playerMineWeight = _player getVariable["KFB_totalMineWeight", 0];
+	_classInfo = (missionConfigFile >> "CfgMine" >> "types");
+	_maxWeight = getNumber (missionConfigFile >> "CfgMine" >> "maxWeight");
+	_defaultWeight = getNumber (missionConfigFile >> "CfgMine" >> "defaultWeight");
+	_classTypes = getArray (missionConfigFile >> "CfgMine" >> "classTypes");
+	_territoryOnlyEnabled = (missionConfigFile >> "CfgMine" >> "territoryOnly") call BIS_fnc_getCfgDataBool;
+
+	private _vectorDirAndUp = [vectorDir _object, vectorUp _object];
+	_position = getPos _object;
+	_vectorDirection = direction _object;
+	_vectorUp = vectorUp _object;
 
 	/*
 
@@ -98,8 +94,9 @@ try
 		_newWeight = _playerMineWeight + _weightFromClass;
 	};
 
-	//diag_log format ["Setting new weight '%1' | %2", _newWeight, _playerMineWeight];
 	_player setVariable["KFB_totalMineWeight", _newWeight, true];
+
+	deleteVehicle _object;
 
 	_success = true;
 }
@@ -159,6 +156,8 @@ if (_success) then
 
 		isValidMine MUST stay because if there are other CBA namespaces then the script will loop through them as if they were a mine
 		so we keep isValidMine as a check
+
+		Big shoutout to commy2 on reddit for giving me this information!
 	*/
 
 	_mineObj = true call CBA_fnc_createNamespace;

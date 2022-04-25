@@ -45,7 +45,6 @@ if (isServer) then {
 
 			        		if !([_mineNetId, _mineClass] in _ownedMines) then 
 			        		{
-			        			diag_log format["Adding new _mineNetId %1 to array", _mineNetId];
 			        			_ownedMines pushBack [_mineNetId, _mineClass];
 			        			_mineObj setShotParents [vehicle _player, _player];
 
@@ -57,7 +56,6 @@ if (isServer) then {
 		        	}
 		        	else
 		        	{
-		        		//diag_log format ["Mine deleted from world | Total Mine Weight For '%1': %2", name _player, _player getVariable["KFB_totalMineWeight", 0]];
 		        		_namespace call CBA_fnc_deleteNamespace;
 		        	};
 	        	};

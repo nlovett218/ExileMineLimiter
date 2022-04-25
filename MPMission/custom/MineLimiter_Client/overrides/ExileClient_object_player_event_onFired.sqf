@@ -23,6 +23,12 @@ if (ExilePlayerInSafezone) then
 	{
 		deleteVehicle _projectile;
 	};
+
+	//Ensures that we return the item to the inventory
+	if (_weapon isEqualTo "Put") then
+	{
+		[_unit, _magazine, netId _projectile] call ExileClient_MineLimiter_network_placeMineRequest;
+	};
 }
 else 
 {
@@ -81,6 +87,13 @@ else
 				};
 			};
 
+			private _validMagazine = isClass (missionConfigFile >> "CfgMine" >> "types" >> _magazine);
+
+			if !(_validMagazine) exitWith {
+				 ["ErrorTitleAndText", ["Contact an admin!", "This mine hasn't been added to the config!"]] call ExileClient_gui_toaster_addTemplateToast;
+				 deleteVehicle _projectile;
+			};
+
 			//START CUSTOM CODE
 			private _isRemoteCharge = (missionConfigFile >> "CfgMine" >> "types" >> _magazine >> "isRemote") call BIS_fnc_getCfgDataBool;
 
@@ -92,6 +105,15 @@ else
 			if !(_isRemoteCharge) then {
 				[_unit, _magazine, netId _projectile] call ExileClient_MineLimiter_network_placeMineRequest;
 			}
+			else
+			{
+				private _ownedMines = getAllOwnedMines _unit;
+				if !(_projectile in _ownedMines) then {
+					_ownedMines pushBack _projectile;
+				};
+
+				_unit setVariable["ownedMines", _ownedMines];
+			};
 
 			//END
 		};

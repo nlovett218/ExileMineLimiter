@@ -18,9 +18,9 @@ try {
 
 	//This "should" detonate the object if the disarm was unsuccessful (haven't really tested tbh)
 	triggerAmmo _object;
-	//_object setDamage 1;
-	//_object setHit 1;
+	_object setDamage 1;
+	_object setHit 1;
+
+	deleteVehicle _object;
 }
-catch {
-	[_sessionID, "toastRequest", ["ErrorTitleAndText", ["Mine not disarmed!", _exception]]] call ExileServer_system_network_send_to;
-};
+catch {};
