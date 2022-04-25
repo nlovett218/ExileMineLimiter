@@ -107,8 +107,6 @@ Here are the editable settings:
 	disarmingTool = "Exile_Item_Pliers"; //Item Id
 	disarmActivationDistance = 4; //Distance in meters, play around with it to get the right setting. If you set it too close, the mine might go off.
 	disarmRequiresLineOfSight = true; //Pretty self-explanatory
-	
-	//The disarm prompt is activated whether the player is looking at the mine or not (would need further development to fix this)
 
 	territoryOnly = false; //Should mines only be allowed to be placed inside territories?
 
