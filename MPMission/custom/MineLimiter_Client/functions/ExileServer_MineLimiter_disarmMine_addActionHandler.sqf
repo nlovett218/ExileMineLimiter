@@ -13,13 +13,13 @@
 
 diag_log "Running MineLimiter AddActionHandler...";
 
-private _activationDistance = getNumber(missionConfigFile >> "CfgMine" >> "disarmActivationDistance");
-
 [
     5,
     {
         private _namespaces = call CBA_fnc_allNamespaces;
         private _cfgAmmo = configFile >> "CfgAmmo";
+
+        private _activationDistance = getNumber(missionConfigFile >> "CfgMine" >> "disarmActivationDistance");
 
         {
     

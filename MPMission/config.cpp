@@ -116,6 +116,7 @@ class CfgMine
 
 	//Sound ID for disarming
 	disarmingSound = "mine_dismantling";
+	disarmRequiresLineOfSight = true; //Pretty self-explanatory
 
 	//Wanna troll some friends and have it blow up automatically??
 	BlowUpOnUID[] = {};

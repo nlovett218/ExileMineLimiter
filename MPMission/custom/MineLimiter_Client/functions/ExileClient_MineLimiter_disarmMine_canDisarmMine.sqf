@@ -38,10 +38,18 @@ try
 	{
 		_result = false;
 	};
+
+	private _requireLOS = (missionConfigFile >> "CfgMine" >> "disarmRequiresLineOfSight") call BIS_fnc_getCfgDataBool;
+	if (_requireLOS) then 
+	{
+		if ([[], true] call ExileClient_util_model_getLookAt isEqualTo objNull) then
+		{
+			_result = false;
+		};
+	};
 }
 catch {
 
-	diag_log _exception;
 	_result = false;
 };
 
