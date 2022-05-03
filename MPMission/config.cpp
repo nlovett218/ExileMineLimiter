@@ -110,13 +110,12 @@ class CfgMine
 	disarmingRequiresTool = true; //Should disarming mines require an item in inventory?
 	disarmingTool = "Exile_Item_Pliers"; //Item Id
 	disarmActivationDistance = 4; //Distance in meters, play around with it to get the right setting. If you set it too close, the mine might go off.
-	//The prompt is activated whether the player is looking at the mine or not (would need further development to fix this)
 
 	territoryOnly = false; //Should mines only be allowed to be placed inside territories? (not implemented)
 
 	//Sound ID for disarming
 	disarmingSound = "mine_dismantling";
-	disarmRequiresLineOfSight = true; //Pretty self-explanatory
+	disarmRequiresLineOfSight = true; //Pretty self-explanatory 
 
 	//Wanna troll some friends and have it blow up automatically??
 	BlowUpOnUID[] = {};
